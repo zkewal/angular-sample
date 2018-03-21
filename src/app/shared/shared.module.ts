@@ -12,6 +12,7 @@ import { DetailComponent } from './views/detail/detail.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { LoggerService } from './services/logger.service';
 
 @NgModule({
   imports: [
@@ -43,8 +44,9 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
+        AuthService,
         AuthGuardService,
-        AuthService
+        LoggerService
       ]
     };
   }

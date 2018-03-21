@@ -7,6 +7,10 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+   HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     SharedModule.forRoot()
   ],

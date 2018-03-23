@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
@@ -9,7 +9,10 @@ import { CustomValidators } from 'ng2-validation';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  @ViewChild('fileUpload') fileUpload: ElementRef;
+  ourFile: File; // hold our file
   userForm: FormGroup;
+  maxDate: Date;
   constructor(
     private router: Router,
     private fb: FormBuilder
@@ -17,9 +20,11 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.maxDate = new Date(2020, 0, 1);
+    console.log('date', this.maxDate);
   }
   createForm() {
-    const phoneNumberPattern = '^\s*(?:\+?\d{1,3})?[- (]*\d{3}(?:[- )]*\d{3})?[- ]*\d{4}(?: *[x/#]\d+)?\s*$';
+    const phoneNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
     const passwordControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
     this.userForm = this.fb.group({
       firstName: ['', Validators.required, Validators.maxLength(30)],
@@ -34,6 +39,21 @@ export class SignupComponent implements OnInit {
       confirmPassword: ['', CustomValidators.equalTo(passwordControl)],
     });
   }
+
+  /**
+   * this is used to trigger the input
+   */
+  openInput() {
+    // your can use ElementRef for this later
+    this.fileUpload.nativeElement.click();
+  }
+
+  fileChange(files: File[]) {
+    if (files.length > 0) {
+      this.ourFile = files[0];
+    }
+  }
+
   navigateToSignIn() {
     this.router.navigate(['./signin']);
   }

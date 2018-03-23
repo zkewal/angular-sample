@@ -43,22 +43,25 @@
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Address">
+              <textarea matInput placeholder="Address"></textarea>
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Birthday">
+              <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
-            <mat-form-field class="full-width">
-              <input matInput placeholder="Profile Picture">
-            </mat-form-field>
+            <button mat-raised-button (click)="openInput(); $event.preventDefault()">
+              Upload Profile picture
+            </button>
+            <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)">
           </td>
         </tr>
         <tr>
@@ -86,7 +89,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>Submit</button>
+    <button mat-button type="submit">Submit</button>
     <button mat-button (click)="navigateToSignIn()">Navigate to Sign In</button>
   </mat-card-actions>
 </mat-card>

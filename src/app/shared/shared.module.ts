@@ -46,6 +46,7 @@ import { DetailComponent } from './views/detail/detail.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { LoggerService } from './services/logger.service';
+import { ImgCropComponent } from './views/img-crop/img-crop.component';
 
 @NgModule({
   imports: [
@@ -129,7 +130,8 @@ import { LoggerService } from './services/logger.service';
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    DetailComponent
+    DetailComponent,
+    ImgCropComponent
   ]
 })
 export class SharedModule {

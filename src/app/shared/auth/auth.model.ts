@@ -54,4 +54,7 @@ export const ValidationMessages: { [key: string]: any } = {
     'confirmPassword': {
         'equalTo': 'Not matching.',
     },
+    'imageSrc': {
+        'required': 'Required.'
+    },
 };

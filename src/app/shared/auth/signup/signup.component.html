@@ -65,17 +65,6 @@
         </tr>
         <tr>
           <td>
-            <button mat-raised-button (click)="openCropper()">
-              Upload Profile picture
-            </button>
-            <input class="hide-it" matInput formControlName="imageSrc" placeholder="Image Source">
-            <!-- <canvas class="hide-it" #myCanvas></canvas> -->
-            <!-- <img class="hide-it" [src]="imgSrc" id="tableBanner" /> -->
-            <!-- <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)"> -->
-          </td>
-        </tr>
-        <tr>
-          <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="username" placeholder="Username">
               <mat-error>{{this.formDisplayError['username']}}</mat-error>
@@ -96,6 +85,18 @@
               <input type="password" formControlName="confirmPassword" matInput placeholder="Confirm Password">
               <mat-error>{{this.formDisplayError['confirmPassword']}}</mat-error>
             </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button (click)="openCropper()">
+              Upload Profile picture
+            </button>
+            <input class="hide-it" matInput formControlName="imageSrc" placeholder="Image Source">
+            <mat-error>{{this.formDisplayError['imageSrc']}}</mat-error>
+            <!-- <canvas class="hide-it" #myCanvas></canvas> -->
+            <!-- <img class="hide-it" [src]="imgSrc" id="tableBanner" /> -->
+            <!-- <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)"> -->
           </td>
         </tr>
       </table>

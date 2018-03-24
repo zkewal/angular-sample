@@ -81,13 +81,11 @@ export class SignupComponent implements OnInit {
   }
 
   openCropper() {
-    const dialogRef = this.dialog.open(ImgCropComponent, {
-      // width: '250px'
-    });
+    const dialogRef = this.dialog.open(ImgCropComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+      console.log('The dialog was closed', result);
+      this.userForm.get('imageSrc').setValue(result);
     });
   }
 

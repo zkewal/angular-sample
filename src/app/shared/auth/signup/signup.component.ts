@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   @ViewChild('myCanvas') myCanvas: ElementRef;
   ourFile: File; // hold our file
   userForm: FormGroup;
-  maxDate: Date;
+  maxDateString;
   imgSrc = '';
   formDisplayError = {};
   showImage = false;
@@ -34,9 +34,10 @@ export class SignupComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/home']);
     } else {
+      this.maxDateString = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
       this.createForm();
-      this.maxDate = new Date(2020, 0, 1);
-      console.log('date', this.maxDate);
+      // this.maxDate = new Date(2020, 0, 1);
+      // console.log('date', this.maxDate);
     }
   }
   createForm() {
@@ -49,7 +50,7 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern(phoneNumberPattern)]],
       address: ['', [Validators.required, Validators.maxLength(300)]],
-      birthday: ['', [Validators.required]],
+      birthday: ['', [Validators.required, CustomValidators.maxDate(this.maxDateString)]],
       imageSrc: ['', [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       password: passwordControl,
@@ -58,7 +59,6 @@ export class SignupComponent implements OnInit {
 
     this.userForm.valueChanges.subscribe(
       (data) => {
-        // console.log('form value change');
         // tslint:disable-next-line:forin
         for (const field in ValidationMessages) {
           const control = <FormControl>this.userForm.controls[field];
@@ -66,6 +66,7 @@ export class SignupComponent implements OnInit {
           this.formDisplayError[field] = '';
 
           if (control && control.dirty && !control.valid) {
+            console.log('form value change', field, control);
             // see if the control being reffered to is having any changes.
             const messages = ValidationMessages[field];
 

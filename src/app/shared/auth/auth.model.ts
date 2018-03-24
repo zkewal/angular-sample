@@ -13,54 +13,54 @@ export class User {
 
 export const ValidationMessages: { [key: string]: any } = {
     'firstName': {
-        'required': 'Required.',
-        'maxLength': '>30'
+        'required': 'First Name is required.',
+        'maxlength': 'First Name cannot be greater than 30.'
     },
     'lastName': {
-        'required': 'Required.',
-        'maxLength': '>30'
+        'required': 'Last Name is required.',
+        'maxlength': 'Last Name cannot be greater than 30.'
     },
     'surname': {
-        'required': 'Required.',
-        'maxLength': '>30'
+        'required': 'Surname is required.',
+        'maxlength': 'Surname cannot be greater than 30.'
     },
     'email': {
-        'required': 'Required.',
-        'email': 'valid email.'
+        'required': 'Email address is Required.',
+        'email': 'Please enter a valid Email address.'
     },
     'phoneNumber': {
-        'required': 'Required.',
-        'maxLength': '>13',
-        'pattern': 'pattern match'
+        'required': 'Phone Number is Required.',
+        'pattern': 'Please enter a valid Phone Number.'
     },
     'address': {
-        'required': 'Required.',
-        'maxLength': '>300'
+        'required': 'Address is Required.',
+        'maxlength': 'Address cannot be greater than 300.'
     },
     'birthday': {
-        'required': 'Required.',
+        'required': 'Birthday is Required.',
+        'maxDate': 'Birthday cannot be in future.'
     },
     'username': {
-        'required': 'Required.',
-        'minLength': '<3',
-        'maxLength': '>15'
+        'required': 'Username is Required.',
+        'minlength': 'Username cannot be less than 3.',
+        'maxlength': 'Username cannot be greater than 15.'
     },
     'password': {
-        'required': 'Required.',
-        'minLength': '<3',
-        'maxLength': '>15'
+        'required': 'Password is Required.',
+        'minlength': 'Password cannot be less than 3.',
+        'maxlength': 'Password cannot be greater than 15.'
     },
     'confirmPassword': {
-        'required': 'Required.',
-        'equalTo': 'Not matching.',
+        'required': 'Confirm Password is Required.',
+        'equalTo': 'Not matching with Password.',
     },
     'imageSrc': {
         'required': 'Required.'
     },
     'signinUsername': {
-        'required': 'Required.'
+        'required': 'Username is Required.'
     },
     'signinPassword': {
-        'required': 'Required.'
+        'required': 'Password is Required.'
     }
 };

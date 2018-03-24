@@ -9,6 +9,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="firstName" placeholder="First Name">
+              <mat-error>{{this.formDisplayError['firstName']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -16,6 +17,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="lastName" placeholder="Last Name">
+              <mat-error>{{this.formDisplayError['lastName']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -23,6 +25,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="surname" placeholder="Surname">
+              <mat-error>{{this.formDisplayError['surname']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -30,6 +33,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="email" placeholder="Email Id">
+              <mat-error>{{this.formDisplayError['email']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -37,6 +41,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="phoneNumber" placeholder="Phone Number">
+              <mat-error>{{this.formDisplayError['phoneNumber']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -44,6 +49,7 @@
           <td>
             <mat-form-field class="full-width">
               <textarea matInput formControlName="address" placeholder="Address"></textarea>
+              <mat-error>{{this.formDisplayError['address']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -53,6 +59,7 @@
               <input matInput formControlName="birthday" [max]="maxDate" [matDatepicker]="picker" placeholder="Birthday">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
+              <mat-error>{{this.formDisplayError['birthday']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -71,6 +78,7 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput formControlName="username" placeholder="Username">
+              <mat-error>{{this.formDisplayError['username']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -78,6 +86,7 @@
           <td>
             <mat-form-field class="full-width">
               <input type="password" formControlName="password" matInput placeholder="Password">
+              <mat-error>{{this.formDisplayError['password']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -85,6 +94,7 @@
           <td>
             <mat-form-field class="full-width">
               <input type="password" formControlName="confirmPassword" matInput placeholder="Confirm Password">
+              <mat-error>{{this.formDisplayError['confirmPassword']}}</mat-error>
             </mat-form-field>
           </td>
         </tr>

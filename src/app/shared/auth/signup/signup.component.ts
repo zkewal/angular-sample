@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { CustomValidators } from 'ng2-validation';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ImgCropComponent } from './../../views/img-crop/img-crop.component';
+import { ValidationMessages } from '../auth.model';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
   userForm: FormGroup;
   maxDate: Date;
   imgSrc = '';
+  formDisplayError = {};
 
   constructor(
     private router: Router,
@@ -33,18 +35,41 @@ export class SignupComponent implements OnInit {
     const phoneNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
     const passwordControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
     this.userForm = this.fb.group({
-      firstName: ['', Validators.required, Validators.maxLength(30)],
-      lastName: ['', Validators.required, Validators.maxLength(30)],
-      surname: ['', Validators.required, Validators.maxLength(30)],
-      email: ['', Validators.required, Validators.email],
-      phoneNumber: ['', Validators.required, Validators.maxLength(13), Validators.pattern(phoneNumberPattern)],
-      address: ['', Validators.required, Validators.maxLength(300)],
-      birthday: ['', Validators.required],
-      imageSrc: ['', Validators.required],
-      username: ['', Validators.required, Validators.minLength(3), Validators.maxLength(15)],
+      firstName: ['', [Validators.required, Validators.maxLength(30)]],
+      lastName: ['', [Validators.required, Validators.maxLength(30)]],
+      surname: ['', [Validators.required, Validators.maxLength(30)]],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.maxLength(13), Validators.pattern(phoneNumberPattern)]],
+      address: ['', [Validators.required, Validators.maxLength(300)]],
+      birthday: ['', [Validators.required]],
+      imageSrc: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       password: passwordControl,
-      confirmPassword: ['', CustomValidators.equalTo(passwordControl)]
+      confirmPassword: ['', [CustomValidators.equalTo(passwordControl)]]
     });
+
+    this.userForm.valueChanges.subscribe(
+      (data) => {
+        // console.log('form value change');
+        // tslint:disable-next-line:forin
+        for (const field in ValidationMessages) {
+          const control = <FormControl>this.userForm.controls[field];
+
+          this.formDisplayError[field] = '';
+
+          if (control && control.dirty && !control.valid) {
+            // see if the control being reffered to is having any changes.
+            const messages = ValidationMessages[field];
+
+            // tslint:disable-next-line:forin
+            for (const key in control.errors) {
+              // there can be more than one validation break, so concatenate the messages.
+              this.formDisplayError[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    );
   }
 
   /**

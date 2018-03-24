@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
       surname: ['', [Validators.required, Validators.maxLength(30)]],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.maxLength(13), Validators.pattern(phoneNumberPattern)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(phoneNumberPattern)]],
       address: ['', [Validators.required, Validators.maxLength(300)]],
       birthday: ['', [Validators.required]],
       imageSrc: ['', [Validators.required]],
@@ -72,14 +72,6 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  // /**
-  //  * this is used to trigger the input
-  //  */
-  // openInput() {
-  //   // your can use ElementRef for this later
-  //   this.fileUpload.nativeElement.click();
-  // }
-
   openCropper() {
     const dialogRef = this.dialog.open(ImgCropComponent);
 
@@ -108,27 +100,10 @@ export class SignupComponent implements OnInit {
     ctx.drawImage(img, 0, 0);
   }
 
-  // readUrl(file: any) {
-
-  //   const reader = new FileReader();
-
-  //   // tslint:disable-next-line:no-shadowed-variable
-  //   reader.onload = (event: any) => {
-  //     this.imgSrc = event.target.result;
-  //     this.userForm.get('imageSrc').setValue(this.imgSrc);
-  //     this.renderImgFromSource(this.imgSrc);
-  //   };
-
-  //   reader.readAsDataURL(file);
-
-  // }
-
-  // fileChange(files: File[]) {
-  //   if (files.length > 0) {
-  //     this.ourFile = files[0];
-  //     this.readUrl(this.ourFile);
-  //   }
-  // }
+  formSubmit() {
+    console.log('form submit', this.userForm);
+    console.log('form errors', this.formDisplayError);
+  }
 
   navigateToSignIn() {
     this.router.navigate(['./signin']);

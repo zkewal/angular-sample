@@ -2,7 +2,7 @@
   <!-- <mat-card-header> -->
   <mat-card-title>Sign Up</mat-card-title>
   <!-- </mat-card-header> -->
-  <form [formGroup]="userForm">
+  <form [formGroup]="userForm" (submit)="formSubmit()">
     <mat-card-content>
       <table class="full-width" cellspacing="0">
         <tr>

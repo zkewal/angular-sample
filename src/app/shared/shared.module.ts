@@ -3,6 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-img-cropper';
 
 import {
@@ -53,6 +54,7 @@ import { ImgCropComponent } from './views/img-crop/img-crop.component';
 import { SuccessNotifyComponent } from './auth/signup/successnotify.component';
 import { SiginiSuccessNotifyComponent } from './auth/signin/siginsuccessnotify.component';
 import { SiginiErrorNotifyComponent } from './auth/signin/signinerrornotify.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -162,7 +164,12 @@ export class SharedModule {
       providers: [
         AuthService,
         AuthGuardService,
-        LoggerService
+        LoggerService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
+        }
       ]
     };
   }

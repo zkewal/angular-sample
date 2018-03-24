@@ -1,3 +1,4 @@
+import { SuccessNotifyComponent } from './../shared/auth/signup/successnotify.component';
 
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -21,7 +22,9 @@ export class HomeComponent implements OnInit {
   }
 
   testHttpInterceptor() {
-
+    this.http.get('api/test').subscribe(
+      resp => console.log('resp:', resp)
+    );
   }
 
 }

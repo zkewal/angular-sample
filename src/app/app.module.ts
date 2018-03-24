@@ -7,10 +7,9 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data-service';
-import { AuthInterceptorService } from './shared/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -26,11 +25,6 @@ import { AuthInterceptorService } from './shared/auth/auth-interceptor.service';
     SharedModule.forRoot()
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })

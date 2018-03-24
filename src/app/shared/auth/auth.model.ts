@@ -52,6 +52,7 @@ export const ValidationMessages: { [key: string]: any } = {
         'maxLength': '>15'
     },
     'confirmPassword': {
+        'required': 'Required.',
         'equalTo': 'Not matching.',
     },
     'imageSrc': {

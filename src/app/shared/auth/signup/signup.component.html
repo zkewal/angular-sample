@@ -94,8 +94,8 @@
             </button>
             <input class="hide-it" matInput formControlName="imageSrc" placeholder="Image Source">
             <mat-error>{{this.formDisplayError['imageSrc']}}</mat-error>
-            <!-- <canvas class="hide-it" #myCanvas></canvas> -->
-            <!-- <img class="hide-it" [src]="imgSrc" id="tableBanner" /> -->
+            <canvas [ngClass]="{'hide-it': !showImage}" #myCanvas></canvas>
+            <!-- <img [src]="imgSrc" id="tableBanner" /> -->
             <!-- <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)"> -->
           </td>
         </tr>

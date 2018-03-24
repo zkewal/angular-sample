@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   maxDate: Date;
   imgSrc = '';
   formDisplayError = {};
-
+  showImage = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
       imageSrc: ['', [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       password: passwordControl,
-      confirmPassword: ['', [CustomValidators.equalTo(passwordControl)]]
+      confirmPassword: ['', [Validators.required, CustomValidators.equalTo(passwordControl)]]
     });
 
     this.userForm.valueChanges.subscribe(
@@ -72,20 +72,27 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  /**
-   * this is used to trigger the input
-   */
-  openInput() {
-    // your can use ElementRef for this later
-    this.fileUpload.nativeElement.click();
-  }
+  // /**
+  //  * this is used to trigger the input
+  //  */
+  // openInput() {
+  //   // your can use ElementRef for this later
+  //   this.fileUpload.nativeElement.click();
+  // }
 
   openCropper() {
     const dialogRef = this.dialog.open(ImgCropComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      this.userForm.get('imageSrc').setValue(result);
+      // console.log('The dialog was closed', result);
+      if (result) {
+        this.showImage = true;
+        this.userForm.get('imageSrc').setValue(result);
+        this.renderImgFromSource(result);
+      } else {
+        this.userForm.get('imageSrc').setValue('');
+        this.showImage = false;
+      }
     });
   }
 
@@ -101,29 +108,29 @@ export class SignupComponent implements OnInit {
     ctx.drawImage(img, 0, 0);
   }
 
-  readUrl(file: any) {
+  // readUrl(file: any) {
 
-    const reader = new FileReader();
+  //   const reader = new FileReader();
 
-    // tslint:disable-next-line:no-shadowed-variable
-    reader.onload = (event: any) => {
-      this.imgSrc = event.target.result;
-      this.userForm.get('imageSrc').setValue(this.imgSrc);
-      this.renderImgFromSource(this.imgSrc);
-    };
+  //   // tslint:disable-next-line:no-shadowed-variable
+  //   reader.onload = (event: any) => {
+  //     this.imgSrc = event.target.result;
+  //     this.userForm.get('imageSrc').setValue(this.imgSrc);
+  //     this.renderImgFromSource(this.imgSrc);
+  //   };
 
-    reader.readAsDataURL(file);
+  //   reader.readAsDataURL(file);
 
-  }
+  // }
 
-  fileChange(files: File[]) {
-    if (files.length > 0) {
-      this.ourFile = files[0];
-      this.readUrl(this.ourFile);
-    }
-  }
+  // fileChange(files: File[]) {
+  //   if (files.length > 0) {
+  //     this.ourFile = files[0];
+  //     this.readUrl(this.ourFile);
+  //   }
+  // }
 
   navigateToSignIn() {
-    // this.router.navigate(['./signin']);
+    this.router.navigate(['./signin']);
   }
 }

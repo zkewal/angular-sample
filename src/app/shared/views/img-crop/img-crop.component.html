@@ -8,11 +8,15 @@
     <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
 </span> -->
 
-<!-- <div>
-    <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
-</div> -->
-
-<canvas #myCanvas></canvas>
-
-<img src="" id="tableBanner" />
+<h1 mat-dialog-title>Upload Profile Picture</h1>
+<div mat-dialog-content>
+  <p>Please upload your profile picture here.</p>
+  <div>
+        <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+    </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.image" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</div>

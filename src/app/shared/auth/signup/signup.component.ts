@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ImgCropComponent } from './../../views/img-crop/img-crop.component';
 
 @Component({
   selector: 'app-signup',
@@ -10,12 +12,16 @@ import { CustomValidators } from 'ng2-validation';
 })
 export class SignupComponent implements OnInit {
   @ViewChild('fileUpload') fileUpload: ElementRef;
+  @ViewChild('myCanvas') myCanvas: ElementRef;
   ourFile: File; // hold our file
   userForm: FormGroup;
   maxDate: Date;
+  imgSrc = '';
+
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -37,6 +43,7 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required, Validators.minLength(3), Validators.maxLength(15)],
       password: passwordControl,
       confirmPassword: ['', CustomValidators.equalTo(passwordControl)],
+      imageSrc: ['', Validators.required]
     });
   }
 
@@ -48,13 +55,52 @@ export class SignupComponent implements OnInit {
     this.fileUpload.nativeElement.click();
   }
 
+  openCropper() {
+    const dialogRef = this.dialog.open(ImgCropComponent, {
+      // width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
+
+  renderImgFromSource(imgSrc) {
+    const img = new Image();
+    console.log('image src', typeof (imgSrc));
+    img.src = imgSrc;
+    const canvas = (<HTMLCanvasElement>this.myCanvas.nativeElement);
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+  }
+
+  readUrl(file: any) {
+
+    const reader = new FileReader();
+
+    // tslint:disable-next-line:no-shadowed-variable
+    reader.onload = (event: any) => {
+      this.imgSrc = event.target.result;
+      this.userForm.get('imageSrc').setValue(this.imgSrc);
+      this.renderImgFromSource(this.imgSrc);
+    };
+
+    reader.readAsDataURL(file);
+
+  }
+
   fileChange(files: File[]) {
     if (files.length > 0) {
       this.ourFile = files[0];
+      this.readUrl(this.ourFile);
     }
   }
 
   navigateToSignIn() {
-    this.router.navigate(['./signin']);
+    // this.router.navigate(['./signin']);
   }
 }

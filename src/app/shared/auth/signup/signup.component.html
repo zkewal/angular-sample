@@ -2,8 +2,8 @@
   <!-- <mat-card-header> -->
   <mat-card-title>Sign Up</mat-card-title>
   <!-- </mat-card-header> -->
-  <mat-card-content>
-    <form>
+  <form [formGroup]="userForm">
+    <mat-card-content>
       <table class="full-width" cellspacing="0">
         <tr>
           <td>
@@ -58,9 +58,11 @@
         </tr>
         <tr>
           <td>
-            <button mat-raised-button (click)="openInput(); $event.preventDefault()">
+            <button mat-raised-button (click)="openCropper()">
               Upload Profile picture
             </button>
+            <canvas class="hide-it" #myCanvas></canvas>
+            <img class="hide-it" [src]="imgSrc" id="tableBanner" />
             <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)">
           </td>
         </tr>
@@ -86,10 +88,10 @@
           </td>
         </tr>
       </table>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button type="submit">Submit</button>
-    <button mat-button (click)="navigateToSignIn()">Navigate to Sign In</button>
-  </mat-card-actions>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="submit">Submit</button>
+      <button mat-button (click)="navigateToSignIn()">Navigate to Sign In</button>
+    </mat-card-actions>
+  </form>
 </mat-card>

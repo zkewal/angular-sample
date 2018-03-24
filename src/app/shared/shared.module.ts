@@ -1,6 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ImageCropperModule } from 'ngx-img-cropper';
 
 import {
   MatAutocompleteModule,
@@ -51,41 +53,8 @@ import { ImgCropComponent } from './views/img-crop/img-crop.component';
 @NgModule({
   imports: [
     CommonModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    RouterModule
-  ],
-  exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -119,11 +88,51 @@ import { ImgCropComponent } from './views/img-crop/img-crop.component';
     MatToolbarModule,
     MatTooltipModule,
     RouterModule,
+    ImageCropperModule
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    ImageCropperModule,
+    RouterModule,
     SigninComponent,
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    DetailComponent
+    DetailComponent,
+    ImgCropComponent
   ],
   declarations: [
     SigninComponent,
@@ -131,6 +140,9 @@ import { ImgCropComponent } from './views/img-crop/img-crop.component';
     HeaderComponent,
     FooterComponent,
     DetailComponent,
+    ImgCropComponent
+  ],
+  entryComponents: [
     ImgCropComponent
   ]
 })

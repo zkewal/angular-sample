@@ -31,9 +31,13 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.createForm();
-    this.maxDate = new Date(2020, 0, 1);
-    console.log('date', this.maxDate);
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/home']);
+    } else {
+      this.createForm();
+      this.maxDate = new Date(2020, 0, 1);
+      console.log('date', this.maxDate);
+    }
   }
   createForm() {
     const phoneNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';

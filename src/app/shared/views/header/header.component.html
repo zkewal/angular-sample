@@ -1,3 +1,5 @@
 <mat-toolbar class="app-header">
   <span>Sample App Header</span>
+  <span class="spacer"></span>
+  <button *ngIf="authService.isAuthenticated()" (click)="signOutUser()" type="button" mat-button>Sign Out</button>
 </mat-toolbar>

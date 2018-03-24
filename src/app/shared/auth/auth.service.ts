@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 import { User } from './auth.model';
 
 import { Observable } from 'rxjs/Observable';
@@ -19,15 +21,36 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private logger: LoggerService
-  ) { }
+    private logger: LoggerService,
+    private router: Router
+  ) {
+  }
 
   isAuthenticated() {
+    let sessionObj = localStorage.getItem('userSession');
+    if (sessionObj) {
+      sessionObj = JSON.parse(sessionObj);
+      const sessionUsername = sessionObj['username'];
+      const storageData = localStorage.getItem(sessionUsername);
+      if (storageData) {
+        const userData: User = JSON.parse(storageData);
+        this.userData = userData;
+        this.isUserAuthenticated = true;
+      }
+    }
+
     return this.isUserAuthenticated;
   }
 
   getUserInfo() {
     return this.userData;
+  }
+
+  signOutUser() {
+    this.isUserAuthenticated = false;
+    this.userData = null;
+    localStorage.removeItem('userSession');
+    this.router.navigate(['/signin']);
   }
 
   authenticateUser(username: string, password: string) {
@@ -36,11 +59,15 @@ export class AuthService {
       const userData: User = JSON.parse(data);
       if (userData.password === password) {
         this.userData = userData;
+
+        const sessionObject = { 'username': userData.username, 'token': userData.username + ':' + userData.password };
+        localStorage.setItem('userSession', JSON.stringify(sessionObject));
         this.isUserAuthenticated = true;
         return true;
       } else {
         this.isUserAuthenticated = false;
         this.userData = null;
+        localStorage.removeItem('userSession');
         return false;
       }
     }

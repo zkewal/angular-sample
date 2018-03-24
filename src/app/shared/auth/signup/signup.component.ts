@@ -40,10 +40,10 @@ export class SignupComponent implements OnInit {
       phoneNumber: ['', Validators.required, Validators.maxLength(13), Validators.pattern(phoneNumberPattern)],
       address: ['', Validators.required, Validators.maxLength(300)],
       birthday: ['', Validators.required],
+      imageSrc: ['', Validators.required],
       username: ['', Validators.required, Validators.minLength(3), Validators.maxLength(15)],
       password: passwordControl,
-      confirmPassword: ['', CustomValidators.equalTo(passwordControl)],
-      imageSrc: ['', Validators.required]
+      confirmPassword: ['', CustomValidators.equalTo(passwordControl)]
     });
   }
 

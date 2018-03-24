@@ -8,49 +8,49 @@
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="First Name">
+              <input matInput formControlName="firstName" placeholder="First Name">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Last Name">
+              <input matInput formControlName="lastName" placeholder="Last Name">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Surname">
+              <input matInput formControlName="surname" placeholder="Surname">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Email Id">
+              <input matInput formControlName="email" placeholder="Email Id">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Phone Number">
+              <input matInput formControlName="phoneNumber" placeholder="Phone Number">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <textarea matInput placeholder="Address"></textarea>
+              <textarea matInput formControlName="address" placeholder="Address"></textarea>
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Birthday">
+              <input matInput formControlName="birthday" [max]="maxDate" [matDatepicker]="picker" placeholder="Birthday">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -61,29 +61,30 @@
             <button mat-raised-button (click)="openCropper()">
               Upload Profile picture
             </button>
-            <canvas class="hide-it" #myCanvas></canvas>
-            <img class="hide-it" [src]="imgSrc" id="tableBanner" />
-            <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)">
+            <input class="hide-it" matInput formControlName="imageSrc" placeholder="Image Source">
+            <!-- <canvas class="hide-it" #myCanvas></canvas> -->
+            <!-- <img class="hide-it" [src]="imgSrc" id="tableBanner" /> -->
+            <!-- <input #fileUpload id="fileInput" accept="image/x-png,image/gif,image/jpeg" class="hide-it" type="file" (change)="fileChange($event.target.files)"> -->
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Username">
+              <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input type="password" matInput placeholder="Password">
+              <input type="password" formControlName="password" matInput placeholder="Password">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <input type="password" matInput placeholder="Confirm Password">
+              <input type="password" formControlName="confirmPassword" matInput placeholder="Confirm Password">
             </mat-form-field>
           </td>
         </tr>

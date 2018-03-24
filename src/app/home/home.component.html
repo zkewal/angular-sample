@@ -2,7 +2,16 @@
   Signed In User Info:
 </h3>
 
-Please open the network tab in developer tools and click below button it will initiate a dummy http request with bearer token
+Please enter any valid api, open the network tab in developer tools and click below button it will initiate a http request with
+bearer token
+<br>
+It will inject Authorization: Bearer "token"
+<br>
+<br>
+<mat-form-field class="full-width">
+  <input [(ngModel)]="uri" matInput placeholder="Enter URL to initiate http request" value="https://reqres.in/api/products/3">
+</mat-form-field>
+<br>
 <button (click)="testHttpInterceptor()" type="button" mat-button>Test Interceptor</button>
 
 <div *ngIf="userInfo">

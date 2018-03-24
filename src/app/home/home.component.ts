@@ -12,6 +12,7 @@ import { User } from './../shared/auth/auth.model';
 })
 export class HomeComponent implements OnInit {
   userInfo: User;
+  uri = 'http://www.mocky.io/v2/5ab61bfb2f00005900361831';
   constructor(
     private http: HttpClient,
     private authService: AuthService
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   testHttpInterceptor() {
-    this.http.get('api/test').subscribe(
+    this.http.get(this.uri).subscribe(
       resp => console.log('resp:', resp)
     );
   }

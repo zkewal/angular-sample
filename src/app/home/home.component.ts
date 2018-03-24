@@ -20,4 +20,8 @@ export class HomeComponent implements OnInit {
     this.userInfo = this.authService.getUserInfo();
   }
 
+  testHttpInterceptor() {
+
+  }
+
 }

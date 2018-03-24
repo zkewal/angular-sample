@@ -2,6 +2,9 @@
   Signed In User Info:
 </h3>
 
+Please open the network tab in developer tools and click below button it will initiate a dummy http request with bearer token
+<button (click)="testHttpInterceptor()" type="button" mat-button>Test Interceptor</button>
+
 <div *ngIf="userInfo">
   <img [src]="userInfo.imageSrc" />
   <br> First Name: {{userInfo.firstName}}

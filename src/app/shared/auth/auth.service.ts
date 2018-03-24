@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { User } from './auth.model';
@@ -9,18 +8,14 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoggerService } from '../services/logger.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class AuthService {
   private authUserUrl = 'api/users';  // URL to web api
   private isUserAuthenticated = false;
   private userData = null;
+  private sessionInfo;
 
   constructor(
-    private http: HttpClient,
     private logger: LoggerService,
     private router: Router
   ) {
@@ -36,10 +31,21 @@ export class AuthService {
         const userData: User = JSON.parse(storageData);
         this.userData = userData;
         this.isUserAuthenticated = true;
+        this.sessionInfo = sessionObj;
+      } else {
+        localStorage.removeItem('userSession');
       }
     }
 
     return this.isUserAuthenticated;
+  }
+
+  getToken() {
+    if (this.isUserAuthenticated) {
+      return this.sessionInfo.token;
+    } else {
+      return null;
+    }
   }
 
   getUserInfo() {
@@ -63,6 +69,7 @@ export class AuthService {
         const sessionObject = { 'username': userData.username, 'token': userData.username + ':' + userData.password };
         localStorage.setItem('userSession', JSON.stringify(sessionObject));
         this.isUserAuthenticated = true;
+        this.sessionInfo = sessionObject;
         return true;
       } else {
         this.isUserAuthenticated = false;

@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { ImgCropComponent } from './../../views/img-crop/img-crop.component';
 import { ValidationMessages } from '../auth.model';
+import { AuthService } from './../auth.service';
+import { SuccessNotifyComponent } from './successnotify.component';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +25,9 @@ export class SignupComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -105,6 +109,11 @@ export class SignupComponent implements OnInit {
     console.log('form errors', this.formDisplayError);
     if (this.userForm.status === 'VALID') {
       console.log('value', this.userForm.value);
+      this.authService.addUser(this.userForm.value);
+      this.snackBar.openFromComponent(SuccessNotifyComponent, {
+        duration: 5000,
+      });
+      this.navigateToSignIn();
     }
   }
 

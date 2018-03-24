@@ -49,6 +49,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { LoggerService } from './services/logger.service';
 import { ImgCropComponent } from './views/img-crop/img-crop.component';
+import { SuccessNotifyComponent } from './auth/signup/successnotify.component';
 
 @NgModule({
   imports: [
@@ -140,10 +141,12 @@ import { ImgCropComponent } from './views/img-crop/img-crop.component';
     HeaderComponent,
     FooterComponent,
     DetailComponent,
-    ImgCropComponent
+    ImgCropComponent,
+    SuccessNotifyComponent
   ],
   entryComponents: [
-    ImgCropComponent
+    ImgCropComponent,
+    SuccessNotifyComponent
   ]
 })
 export class SharedModule {

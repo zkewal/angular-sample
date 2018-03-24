@@ -103,6 +103,9 @@ export class SignupComponent implements OnInit {
   formSubmit() {
     console.log('form submit', this.userForm);
     console.log('form errors', this.formDisplayError);
+    if (this.userForm.status === 'VALID') {
+      console.log('value', this.userForm.value);
+    }
   }
 
   navigateToSignIn() {

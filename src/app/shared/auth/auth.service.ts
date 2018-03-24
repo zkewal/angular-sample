@@ -33,11 +33,11 @@ export class AuthService {
   }
 
   /** GET user by id. */
-  getUser(id: number): Observable<User> {
-    const url = `${this.authUserUrl}/${id}`;
+  getUser(username: string): Observable<User> {
+    const url = `${this.authUserUrl}/${username}`;
     return this.http.get<User>(url).pipe(
-      tap(_ => this.logger.log(`fetched user id=${id}`)),
-      catchError(this.handleError<User>(`getUser id=${id}`))
+      tap(_ => this.logger.log(`fetched user id=${username}`)),
+      catchError(this.handleError<User>(`getUser id=${username}`))
     );
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
     return this.http.post<User>(this.authUserUrl, user, httpOptions).pipe(
       // tslint:disable-next-line:no-shadowed-variable
       tap((user: User) => {
-        this.logger.log(`added user w/ id=${user.id}`);
+        this.logger.log(`added user w/ id=${user.username}`);
       }),
       catchError(this.handleError<User>('addUser'))
     );

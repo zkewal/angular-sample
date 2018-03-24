@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 There is a sign in page and a sign up page.
 You need to create a user account using sign up page and then use those credentials to sign in.
 
-Once inside sign in page the session will be maintained till you Sign out of the application.
+Once you sign in the session will be maintained till you Sign out of the application.
 
 There is a field to enter url in home page.
 Enter any valid URL and click on the interceptor button, which will initiate a http request and attach the bearer token.

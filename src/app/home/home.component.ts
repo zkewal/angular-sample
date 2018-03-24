@@ -1,5 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../shared/auth/auth.service';
+import { User } from './../shared/auth/auth.model';
 
 @Component({
   selector: 'app-home',
@@ -7,17 +10,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  userInfo: User;
   constructor(
-    public http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.http.get('api/users').subscribe(
-      (resp) => {
-        console.log('resp', resp);
-      }
-    );
+    this.userInfo = this.authService.getUserInfo();
   }
 
 }

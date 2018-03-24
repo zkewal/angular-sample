@@ -1,3 +1,17 @@
-<p>
-  home works!
-</p>
+<h3>
+  Signed In User Info:
+</h3>
+
+<div *ngIf="userInfo">
+  <img [src]="userInfo.imageSrc" />
+  <br> First Name: {{userInfo.firstName}}
+  <br> Last Name: {{userInfo.lastName}}
+  <br> Surname: {{userInfo.surname}}
+  <br> Email: {{userInfo.email}}
+  <br> Phone Number: {{userInfo.phoneNumber}}
+  <br> Address: {{userInfo.address}}
+  <br> Birthday: {{userInfo.birthday | date}}
+  <br> Username: {{userInfo.username}}
+
+
+</div>

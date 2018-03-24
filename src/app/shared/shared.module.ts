@@ -1,3 +1,4 @@
+
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -50,7 +51,8 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { LoggerService } from './services/logger.service';
 import { ImgCropComponent } from './views/img-crop/img-crop.component';
 import { SuccessNotifyComponent } from './auth/signup/successnotify.component';
-
+import { SiginiSuccessNotifyComponent } from './auth/signin/siginsuccessnotify.component';
+import { SiginiErrorNotifyComponent } from './auth/signin/signinerrornotify.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -142,11 +144,15 @@ import { SuccessNotifyComponent } from './auth/signup/successnotify.component';
     FooterComponent,
     DetailComponent,
     ImgCropComponent,
-    SuccessNotifyComponent
+    SuccessNotifyComponent,
+    SiginiErrorNotifyComponent,
+    SiginiSuccessNotifyComponent
   ],
   entryComponents: [
     ImgCropComponent,
-    SuccessNotifyComponent
+    SuccessNotifyComponent,
+    SiginiErrorNotifyComponent,
+    SiginiSuccessNotifyComponent
   ]
 })
 export class SharedModule {

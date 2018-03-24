@@ -57,4 +57,10 @@ export const ValidationMessages: { [key: string]: any } = {
     'imageSrc': {
         'required': 'Required.'
     },
+    'signinUsername': {
+        'required': 'Required.'
+    },
+    'signinPassword': {
+        'required': 'Required.'
+    }
 };
